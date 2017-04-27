@@ -24,11 +24,11 @@ def apply_per_pixel(image, f):
     for x in range(width(result)):
         for y in range(height(result)):
             color = pixel(image, x, y)
-        set_pixel(result, y, x, f(color))
+            set_pixel(result, x, y, f(color))
     return result
   
 def invert(c):
-    return abs(256-c)
+    return abs(255-c)
     
 def filter_invert(image):
     return apply_per_pixel(image, invert)
