@@ -1,0 +1,5 @@
+{
+  "test":"This tries to blur a 6x5 black rectangle" ,
+  "function": "filter_gaussian_blur" ,
+  "image_file": "black_rectangle.json"
+}

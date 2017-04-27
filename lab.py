@@ -57,8 +57,6 @@ def convolve2d(image, kernel):
           pxl = get_pixel(image, x-1+kx, y-1+ky)
           inc = pxl * kernel[ky][kx]
           conv += inc
-#          print(x,y,kx,ky,inc,pxl,conv)
-      #set pixel to convolution    
       set_pixel(result, x,y,conv)
   return result    
 

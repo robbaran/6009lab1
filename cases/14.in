@@ -1,0 +1,5 @@
+{
+  "test":"This tries to edge detect a centered pixel",
+  "function":"filter_edge_detect",
+  "image_file":"centered_pixel.json"
+}

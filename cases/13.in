@@ -1,0 +1,5 @@
+{
+  "test":"This tests gaussian blur filter on a centered pixel",
+  "function":"filter_gaussian_blur",
+  "image_file":"centered_pixel.json"
+}
