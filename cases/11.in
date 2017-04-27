@@ -1,0 +1,5 @@
+{
+  "test": "This test tries to invert a tiny image for manual inspection",
+  "function": "filter_invert",
+  "image_file": "gradient.json"
+}
