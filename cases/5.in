@@ -1,0 +1,5 @@
+{
+  "test": "Blur the chess image",
+  "function": "filter_gaussian_blur",
+  "image_file": "chess.json"
+}

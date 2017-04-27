@@ -1,0 +1,5 @@
+{
+  "test": "Edge detect the sailboat image",
+  "function": "filter_edge_detect",
+  "image_file": "sailboat.json"
+}

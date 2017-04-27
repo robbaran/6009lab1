@@ -1,0 +1,5 @@
+{
+  "test": "Invert the sailboat image",
+  "function": "filter_invert",
+  "image_file": "sailboat.json"
+}

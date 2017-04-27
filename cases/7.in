@@ -1,0 +1,5 @@
+{
+  "test": "Blur the tree image",
+  "function": "filter_gaussian_blur",
+  "image_file": "tree.json"
+}

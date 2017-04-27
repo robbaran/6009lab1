@@ -1,0 +1,5 @@
+{
+  "test": "Blur the sailboat image",
+  "function": "filter_gaussian_blur",
+  "image_file": "sailboat.json"
+}

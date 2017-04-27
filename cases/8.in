@@ -1,0 +1,5 @@
+{
+  "test": "Edge detect the chess image",
+  "function": "filter_edge_detect",
+  "image_file": "chess.json"
+}

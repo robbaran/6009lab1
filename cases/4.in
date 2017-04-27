@@ -1,0 +1,5 @@
+{
+  "test": "Invert the tree image",
+  "function": "filter_invert",
+  "image_file": "tree.json"
+}
