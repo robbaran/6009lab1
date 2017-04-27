@@ -19,11 +19,11 @@ def set_pixel(image, x, y, color):
   index = x + ncols(image)*y
   image["pixels"][index] = color
 
-def make_image(ncols, nrows):
-  return {"width": ncols, "height": nrows, "pixels": ([0]*ncols*nrows)}
+def make_image(ref_image):
+  return {"width": ref_image['width'], "height": ref_image['height'], "pixels": ([0]*len(ref_image['pixels']))}
 
 def legalize_range(image):
-  result = make_image(ncols(image),nrows(image))
+  result = make_image(image)
   for x in range(ncols(image)):
     for y in range(nrows(image)):
       pxl = int(round(get_pixel(image, x, y)))
@@ -33,7 +33,7 @@ def legalize_range(image):
 
 # return a new image by applying function f to each pixel of the input image
 def apply_per_pixel(image, f):
-    result = make_image(ncols(image),nrows(image))
+    result = make_image(image)
     for x in range(ncols(result)):
         for y in range(nrows(result)):
             color = get_pixel(image, x, y)
@@ -46,7 +46,7 @@ def invert(c):
 def convolve2d(image, kernel):
   #kernel is a 3x3 list of lists
   #returns convolution of image with kernel
-  result = make_image(ncols(image),nrows(image))	#start with empty image
+  result = make_image(image)	#start with empty image
   #iterate over every pixel in image
   for x in range(ncols(image)):
     for y in range(nrows(image)):
@@ -63,7 +63,7 @@ def combine_images(image1, image2, f):
   #image1 is the same size as image2
   w = ncols(image1)
   h = nrows(image1)
-  result = make_image(w,h)
+  result = make_image(image1)
   for x in range(w):
     for y in range(h):
       set_pixel(result, x, y, f(get_pixel(image1, x, y),get_pixel(image2, x, y)))
