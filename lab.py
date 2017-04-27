@@ -27,8 +27,7 @@ def legalize_range(image):
   for x in range(width(image)):
     for y in range(height(image)):
       pxl = int(round(get_pixel(image, x, y)))
-      if pxl > 255:
-        pxl = 255
+      pxl = min(255,pxl) #clip pxl at 255 max
       set_pixel(result,x,y,pxl)
   return result
 
