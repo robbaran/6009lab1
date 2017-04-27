@@ -7,23 +7,27 @@ def width(image):
 def height(image):
     return image["height"]
 
-def pixel(image, x, y):
-    index = x + width(image)*y
-    return image["pixels"][index]
+def get_pixel(image, x, y, default=0):
+  index = x + width(image)*y
+  if x >= 0 and x < width(image) and y >= 0 and y <height(image): 
+    pxl = image["pixels"][index]
+  else:
+    pxl = default
+  return pxl  
 
 def set_pixel(image, x, y, color):
-    index = x + width(image)*y
-    image["pixels"][index] = color
+  index = x + width(image)*y
+  image["pixels"][index] = color
 
 def make_image(width, height):
-    return {"width": width, "height": height, "pixels": ([0]*width*height)}
+  return {"width": width, "height": height, "pixels": ([0]*width*height)}
 
 # return a new image by applying function f to each pixel of the input image
 def apply_per_pixel(image, f):
     result = make_image(width(image),height(image))
     for x in range(width(result)):
         for y in range(height(result)):
-            color = pixel(image, x, y)
+            color = get_pixel(image, x, y)
             set_pixel(result, x, y, f(color))
     return result
   
