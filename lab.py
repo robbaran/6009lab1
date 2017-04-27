@@ -1,30 +1,30 @@
 # The code below seems to have some problems.
 # Fix it before implementing the rest of your lab
 
-def width(image):
+def ncols(image):
     return image["width"]
 
 def height(image):
     return image["height"]
 
 def get_pixel(image, x, y, default=0):
-  index = x + width(image)*y
-  if x >= 0 and x < width(image) and y >= 0 and y < height(image): 
+  index = x + ncols(image)*y
+  if x >= 0 and x < ncols(image) and y >= 0 and y < height(image): 
     pxl = image["pixels"][index]
   else:
     pxl = default
   return pxl  
 
 def set_pixel(image, x, y, color):
-  index = x + width(image)*y
+  index = x + ncols(image)*y
   image["pixels"][index] = color
 
-def make_image(width, height):
-  return {"width": width, "height": height, "pixels": ([0]*width*height)}
+def make_image(ncols, height):
+  return {"width": ncols, "height": height, "pixels": ([0]*ncols*height)}
 
 def legalize_range(image):
-  result = make_image(width(image),height(image))
-  for x in range(width(image)):
+  result = make_image(ncols(image),height(image))
+  for x in range(ncols(image)):
     for y in range(height(image)):
       pxl = int(round(get_pixel(image, x, y)))
       pxl = min(255,pxl) #clip pxl at 255 max
@@ -33,8 +33,8 @@ def legalize_range(image):
 
 # return a new image by applying function f to each pixel of the input image
 def apply_per_pixel(image, f):
-    result = make_image(width(image),height(image))
-    for x in range(width(result)):
+    result = make_image(ncols(image),height(image))
+    for x in range(ncols(result)):
         for y in range(height(result)):
             color = get_pixel(image, x, y)
             set_pixel(result, x, y, f(color))
@@ -46,9 +46,9 @@ def invert(c):
 def convolve2d(image, kernel):
   #kernel is a 3x3 list of lists
   #returns convolution of image with kernel
-  result = make_image(width(image),height(image))	#start with empty image
+  result = make_image(ncols(image),height(image))	#start with empty image
   #iterate over every pixel in image
-  for x in range(width(image)):
+  for x in range(ncols(image)):
     for y in range(height(image)):
       conv = 0
       for kx in range(len(kernel[0])):
@@ -61,7 +61,7 @@ def convolve2d(image, kernel):
 
 def combine_images(image1, image2, f):
   #image1 is the same size as image2
-  w = width(image1)
+  w = ncols(image1)
   h = height(image1)
   result = make_image(w,h)
   for x in range(w):
