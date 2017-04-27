@@ -60,6 +60,29 @@ def convolve2d(image, kernel):
       set_pixel(result, x,y,conv)
   return result    
 
+def combine_images(image1, image2, f):
+  #image1 is the same size as image2
+  w = width(image1)
+  h = height(image1)
+  result = make_image(w,h)
+  for x in range(w):
+    for y in range(h):
+      set_pixel(result, x, y, f(get_pixel(image1, x, y),get_pixel(image2, x, y)))
+  return result
+
+def combine_pyth(pixel1,pixel2):
+  return (pixel1**2+pixel2**2)**0.5
+
+Kx=[
+[-1,0,1],
+[-2,0,2],
+[-1,0,1]]
+
+Ky=[
+[-1,2,-1],
+[0,0,0],
+[1,2,1]]
+
 GAUSSIAN_KERNEL=[
 [1/16,2/16,1/16],
 [2/16,4/16,2/16],
@@ -70,6 +93,11 @@ def filter_invert(image):
 
 def filter_gaussian_blur(image):
   return legalize_range(convolve2d(image, GAUSSIAN_KERNEL))
+
+def filter_edge_detect(image):
+  Ox = convolve2d(image,Kx)
+  Oy = convolve2d(image,Ky)
+  return legalize_range(combine_images(Ox,Oy,combine_pyth))
 # any function of the form "filter_X( image ):", where X denotes the name of
 # the filter, can be applied via test.py and the web UI!
 # Feel free to go wild and implement your favorite filters once you are done.
