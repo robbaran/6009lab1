@@ -79,7 +79,7 @@ Kx=[
 [-1,0,1]]
 
 Ky=[
-[-1,2,-1],
+[-1,-2,-1],
 [0,0,0],
 [1,2,1]]
 
@@ -97,6 +97,8 @@ def filter_gaussian_blur(image):
 def filter_edge_detect(image):
   Ox = convolve2d(image,Kx)
   Oy = convolve2d(image,Ky)
+  sobel = combine_images(Ox,Oy,combine_pyth)
+#  print('Ox=',Ox,'Oy=',Oy,'sobel=',sobel)
   return legalize_range(combine_images(Ox,Oy,combine_pyth))
 # any function of the form "filter_X( image ):", where X denotes the name of
 # the filter, can be applied via test.py and the web UI!
